@@ -45,13 +45,15 @@ Infrared receiver:
   description: "The infrared receiver entity to use for receiving commands from your LG remote. This must be an entity provided by a hardware integration (such as ESPHome) that has already been set up with an IR receiver. For a TV, received commands are available as events you can use in automations. For an air conditioner, they keep the climate entity in sync with the physical remote."
 Supported modes:
   description: "The operating modes your air conditioner supports. Select at least one of **Cool**, **Heat**, **Dry**, and **Fan only**. Check your remote or the manual of your unit to see which modes it has. Selecting a mode your unit does not have breaks nothing. Your air conditioner simply does not respond to it. This option is shown for an air conditioner only."
+Room temperature sensor:
+  description: "An optional temperature sensor whose reading is displayed as the air conditioner's current room temperature. This option is shown for an air conditioner only. Leave it empty if you do not want to use an external sensor."
 {% endconfiguration_basic %}
 
 For a TV, select at least one of **Infrared emitter** or **Infrared receiver**. Select both if you want to be able to send commands to your TV and react to commands from the remote. For a home theater, select an **Infrared emitter**.
 
 ## Reconfiguring the integration
 
-If you replace your infrared emitter, add a receiver later, or want to change the modes of your air conditioner, you can update the device without removing and re-adding the integration.
+If you replace your infrared emitter, add a receiver later, or want to change the modes or room temperature sensor of your air conditioner, you can update the device without removing and re-adding the integration.
 
 1. Go to {% my integrations title="**Settings** > **Devices & services**" %}.
 2. Find the **LG Infrared** integration and select it.
@@ -175,6 +177,12 @@ Horizontal swing positions the airflow left or right:
 #### Temperature range
 
 Supported range: 16 °C to 30 °C in 1 °C steps.
+
+#### Room temperature
+
+Select **Room temperature sensor** during setup or [reconfiguration](#reconfiguring-the-integration) to display an existing sensor's reading on the climate entity. The reading updates when the sensor changes. Temperature units are converted automatically.
+
+This reading is for display and automations in Home Assistant. It does not change the air conditioner's internal thermostat or send a room temperature to the unit. If no sensor is selected, or its reading is unavailable or invalid, the climate entity has no current temperature. You can still control the air conditioner.
 
 #### Buttons
 
